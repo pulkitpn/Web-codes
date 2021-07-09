@@ -1,0 +1,32 @@
+<!Doctype html>
+    <head>
+        <title>Login Page</title>
+    </head>
+    <body>
+        <form>
+            Username: <input type="text" value="user" name="userid"><br><br>
+            Password: <input type="password" value="password" name="pwd"><br>
+            <input type="button" onclick="check(this.form)" name="Login" value="Login">
+            <input type="reset" name="Reset">
+        </form>
+        <script>
+            var chk_username=/^[A-ZA-ZA-Z0-90-9A-ZA-ZA-Z0-90-90-9].{8,15}$/;
+            var chk_password=/^(?=.*\d)(?=.*[!@#$])(?=.*[a-z])(?=.*[A-Z]).{8,13}$/;
+            function check(form){
+                var usrid=form.userid.value
+                var pswd=form.pwd.value
+                if(!chk_username.test(usrid) || !chk_password.test(pswd))
+                    {
+                        alert("Invalid username or password. Please try again");
+                    }
+                else
+                    {
+                        alert("Welcome, User Logged IN");
+                        var d=new Date();
+                        document.write(d);
+                        document.body.bgColor="orange";
+                    }
+            }
+        </script>
+    </body>
+</html>
