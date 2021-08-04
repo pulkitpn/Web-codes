@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Student Information</title>
+    </head>
+    <body>
+        <button type="button" onclick="studentData()">STUDENT INFORMATION</button>
+        <table border="1" id="demo"></table>
+        <script>
+            function studentData(){
+                var bro=new XMLHttpRequest();
+                bro.onreadystatechange=function(){
+                    if(this.readyState==4&&this.status==200)
+                        {
+                            myFunction(this);
+                        }
+                };
+                bro.open("GET","student.xml",true);
+                bro.send();
+            }
+            function myFunction(a){
+                var i;
+                var xmldoc=a.responseXML;
+                var table="<tr><th>USN</th><th>Name</th></tr>";
+                var x=xmldoc.getElementsByTagName("student");
+                for(i=0;i<x.length;i++)
+                    {
+                        table+="<tr><td>"+
+                            x[i].getElementsByTagName("usn")[0].childNodes[0].nodeValue+"</td><td>"+
+                            x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue+"</td>";
+                    }
+                    document.getElementById("demo").innerHTML=table;
+            }
+        </script>
+    </body>
+</html>
